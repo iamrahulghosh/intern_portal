@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken"
 import CustomError from "../utils/ErrorHandler.js"
 import AsyncHandler from "../utils/AsyncHandler.js"
-import Intern from "../models/intern.model.js"
+import Intrn from "../models/intern.model.js"
 
 const verifyAuth = AsyncHandler(async (req, res, next) => {
     try {
@@ -12,7 +12,7 @@ const verifyAuth = AsyncHandler(async (req, res, next) => {
         }
     
         const decodedToken = JWT.verify(token, process.env.TOKEN_SECRET);
-        const user = await Intern.findById(decodedToken?._id).select('-password -refreshToken')
+        const user = await Intrn.findById(decodedToken?._id).select('-password -refreshToken')
     
         if (!user) {
             throw new CustomError(401, 'Invalid user')

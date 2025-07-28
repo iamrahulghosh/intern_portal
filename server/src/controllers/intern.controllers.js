@@ -1,7 +1,7 @@
 import AsyncHandler from "../utils/AsyncHandler.js";
 import Response from "../utils/ResponseHandler.js";
 import CustomError from "../utils/ErrorHandler.js";
-import Intern from "../models/intern.model.js";
+import Intrn from "../models/intern.model.js";
 import OfferLetter from "../models/offerLetter.model.js";
 import Certificate from "../models/certificate.models.js";
 import Lor from "../models/lor.models.js";
@@ -35,7 +35,7 @@ const login = AsyncHandler(async (req, res) => {
     //     )
     // }
 
-    const intern = await Intern.findOne({
+    const intern = await Intrn.findOne({
         email: email?.trim()?.toLowerCase()
     })
 

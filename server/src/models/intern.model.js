@@ -33,6 +33,6 @@ internSchema.methods.generateToken = function(){
     )
 }
 
-const Intern = mongoose.model("Interns", internSchema)
+const Intrn = mongoose.model("Intrns", internSchema)
 
-export default Intern
+export default Intrn
