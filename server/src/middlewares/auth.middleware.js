@@ -8,21 +8,33 @@ const verifyAuth = AsyncHandler(async (req, res, next) => {
         const token = req.cookies?.token || req.header('Authorization')?.replace('Bearer ', '')
     
         if (!token) {
-            throw new CustomError(404, 'Unauthorized user token')
+            return res
+            .status(401)
+            .json(
+                new CustomError(401, "Unauthorised User!")
+            )
         }
     
         const decodedToken = JWT.verify(token, process.env.TOKEN_SECRET);
         const user = await Intrn.findById(decodedToken?._id).select('-password -refreshToken')
     
         if (!user) {
-            throw new CustomError(401, 'Invalid user')
+            return res
+            .status(401)
+            .json(
+                new CustomError(401, "Invallid User!")
+            )
         }
     
         req.user = user;
         next();
 
     } catch (error) {
-        throw new CustomError(401, 'Invalid user')
+        return res
+            .status(401)
+            .json(
+                new CustomError(401, "Invalid User!")
+            )
     }
 })
 
