@@ -23,7 +23,7 @@ function Login() {
 
   const login = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/intern/login", credentials, {
+      const response = await axios.post("https://cxi-server.vercel.app/api/v1/intern/login", credentials, {
         withCredentials: true, "Content-Type": "application/json"
       })
 

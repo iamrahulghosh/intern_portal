@@ -14,7 +14,7 @@ function Home() {
   const fetchParks = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/intern/parks",
+        "https://cxi-server.vercel.app/api/v1/intern/parks",
         {
           withCredentials: true,
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ function Home() {
   const logout = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/intern/logout",
+        "https://cxi-server.vercel.app/api/v1/intern/logout",
         {
           withCredentials: true,
           "Content-Type": "application/json"
