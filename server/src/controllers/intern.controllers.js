@@ -8,20 +8,32 @@ import Lor from "../models/lor.models.js";
 
 const login = AsyncHandler(async (req, res) => {
     const {
-        email, mobile
+        email
     } = req?.body
 
-    if (!email || !mobile) {
-        throw new CustomError(400, "All fields are required!")
+    if (!email) {
+        return res
+        .status(400)
+        .json(
+            new CustomError(400, "All fields are required!")
+        )
     }
 
     if (!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email?.trim()?.toLowerCase())) {
-        throw new CustomError(400, "Invalid email!")
+        return res
+        .status(400)
+        .json(
+            new CustomError(400, "Invalid E-Mail!")
+        )
     }
 
-    if (mobile?.trim()?.length !== 10) {
-        throw new CustomError(400, "Invalid mobile number!")
-    }
+    // if (mobile?.trim()?.length !== 10) {
+    //     return res
+    //     .status(400)
+    //     .json(
+    //         new CustomError(400, "Invalid mobile number!")
+    //     )
+    // }
 
     const intern = await Intern.findOne({
         email: email?.trim()?.toLowerCase()
@@ -30,12 +42,20 @@ const login = AsyncHandler(async (req, res) => {
     // console.log(intern)
 
     if (!intern) {
-        throw new CustomError(400, "Intern not found!")
+        return res
+        .status(400)
+        .json(
+            new CustomError(400, "Intern not found!")
+        )
     }
 
-    if (Number(intern?.mobile) !== Number(mobile)) {
-        throw new CustomError(400, "Mobile number doesn't matching!")
-    }
+    // if (Number(intern?.mobile) !== Number(mobile)) {
+    //     return res
+    //     .status(400)
+    //     .json(
+    //         new CustomError(400, "Mobile number doesn't matching!")
+    //     )
+    // }
 
     const token = intern.generateToken()
 
@@ -48,14 +68,14 @@ const login = AsyncHandler(async (req, res) => {
     .status(200)
     .cookie("token", token, options)
     .json(
-        new Response(200, intern)
+        new Response(200, intern, "Login Successfully!")
     )
 })
 
 const fetchCredentials = AsyncHandler(async (req, res) => {
     const user = req.user
 
-    console.log(user)
+    // console.log(user)
 
     const offerLetters = await OfferLetter.find({
         email: user.email
