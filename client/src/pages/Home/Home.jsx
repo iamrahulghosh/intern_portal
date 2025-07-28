@@ -47,9 +47,7 @@ function Home() {
         }
       )
 
-      if (response?.status == 200) {
-        navigate("/")
-      }
+      navigate("/")
     } catch (error) {
       console.error(error)
     }
