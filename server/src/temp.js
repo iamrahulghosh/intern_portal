@@ -1,3 +1,3 @@
-const DBName = "INTERN_PORTAL"
+const DBName = "codexintern"
 
 export default DBName
