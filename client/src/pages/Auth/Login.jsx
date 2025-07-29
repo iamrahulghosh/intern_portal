@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, {Toaster} from "react-hot-toast";
+import CXI from "../../assets/cxi.jpeg"
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -47,6 +48,7 @@ function Login() {
     <div>
       <Toaster />
       <Card className="w-96 max-w-sm">
+        <img src={CXI} alt="CXI LOGO" className=" rouned-4xl w-32 mx-auto"/>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
           <CardDescription>
