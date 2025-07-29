@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast, {Toaster} from "react-hot-toast";
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -33,7 +34,8 @@ function Login() {
 
       console.log(response?.data?.data)
     } catch (error) {
-      console.log(error)
+      // console.log(error)
+      toast.error("Invalid email or Intern not found!")
     }
   }
 
@@ -43,6 +45,7 @@ function Login() {
 
   return (
     <div>
+      <Toaster />
       <Card className="w-96 max-w-sm">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
