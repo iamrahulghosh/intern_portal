@@ -31,7 +31,7 @@ function Home() {
         lors: response?.data?.data?.lors,
       });
     } catch (error) {
-      console.error(error);
+      navigate("/")
     }
   };
 
